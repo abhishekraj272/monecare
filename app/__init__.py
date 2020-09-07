@@ -11,7 +11,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 MongoURI = os.environ.get('MONGODB_URI')
 
-client = pymongo.MongoClient("MongoURI")
+client = pymongo.MongoClient(MongoURI)
 
 db = client.monecare
 
