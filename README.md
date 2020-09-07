@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 2. Clone the forked repo.
 
-2. Visit https://github.com/abhishekraj272/monecare/issues and get an issue assigned to you.
+2. Visit https://github.com/abhishekraj272/monecare/issues and comment your username.
 
 3. Solve and Test your application.
 
