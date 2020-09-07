@@ -1,0 +1,29 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-row {
+    position: relative;
+  }
+  .input-row label {
+    position: absolute;
+    left: 0;
+  }
+  .input-row label::before {
+    transition: 1s;
+    /* Just to show how the toggle works */
+  }
+  .input-row label.icon1::before {
+    content: 'icon1';
+  }
+  .input-row label.icon2::before {
+    content: 'icon2';
+  }
+  .input-row input {
+    padding: 0 2rem 0;
+  }
+  .input-row input:focus + label::before,
+  .input-row input:active + label::before {
+    opacity: 0;            /* To visually hide the label's pseudoelement */
+    pointer-events: none;  /* To prevent any cursor-based interaction */
+  }

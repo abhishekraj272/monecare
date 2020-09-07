@@ -1,0 +1,70 @@
+{% extends "public/base.html" %} {% block index %} 
+{% from 'public/table.html' import table %}
+{% from 'public/subscribe.html' import subscribe %}
+
+<!-- Container Starts-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <!-- Repo Rate Table -->
+        <div class="col">{{ table() }}</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <canvas id="myChart" width="50" height="20"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      {{ subscribe() }}
+    </div>
+  </div>
+</div>
+<!-- Container Ends -->
+
+<!--CSS-->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='vendor/animate/animate.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/util.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+<!--JS-->
+<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+<script>
+  $(".js-pscroll").each(function () {
+    var ps = new PerfectScrollbar(this);
+
+    $(window).on("resize", function () {
+      ps.update();
+    });
+  });
+</script>
+
+{% endblock %}
