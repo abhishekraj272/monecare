@@ -1,9 +1,5 @@
 # MoneCare - A webapp to monitor repo rates.
-[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-
-
-
-[![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)  [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### This is useful if you have taken loan, keep a record on repo rates and save extra on EMIs.
 
