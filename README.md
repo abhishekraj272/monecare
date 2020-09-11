@@ -1,4 +1,4 @@
-![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
+![Monocare Logo](https://cdn.jsdelivr.net/gh/abhishekraj272/monecare@latest/app/static/img/monecare.png)
 
 # MoneCare - A webapp to monitor repo rates.
 [![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)  [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
