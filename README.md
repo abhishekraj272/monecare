@@ -1,10 +1,10 @@
 # MoneCare - Webapp to monitor your Repo Rates.
-### Believe it or not, now you can maintain a log of Repo Rates:
+### Believe it or not, now you can maintain a log of Repo Rates with MoneCare
+
+![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
 #### Let us know more about it!
 
 [![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)  [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
 
 ## _Keep an eye on repo rates._
 
