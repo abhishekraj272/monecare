@@ -11,19 +11,13 @@
 (Developed with Heroku)
 ###  Visit https://monecare.herokuapp.com/ for detailed information.
 
-## **Output :-**
+## After feeding necessary data, your **Output** would look something like this
 ![Output1](https://user-images.githubusercontent.com/69141449/92616309-b106e480-f2db-11ea-8989-c9296fdfdac5.PNG)
-
 ![image](https://user-images.githubusercontent.com/69141449/92616556-0216d880-f2dc-11ea-9384-e091b20f82f4.png)
 
 
-## **New to contribution?**
+## **Want to Contribute? Follow the easy steps:**
 
-- [The Definitive Guide to Contributing to Open Source](https://medium.freecodecamp.org/the-definitive-guide-to-contributing-to-open-source-900d5f9f2282) by [@DoomHammerNG](https://twitter.com/DoomHammerNG)
-- [An Intro to Open Source](https://www.digitalocean.com/community/tutorial_series/an-introduction-to-open-source) - Tutorials by DigitalOcean to guide you on your way to contribution success here on GitHub.
-- [Open Source Guides](https://opensource.guide/) - Collection of resources for individuals, communities, and companies who want to learn how to run and contribute to an Open Source 
-
-## **Easy steps to follow:**
 1. Fork this repo. - Click the fork symbol on rightmost top corner of your window.
 
 2. Clone the forked repo. - Click the green button saying "Code" with a download button.
@@ -34,7 +28,13 @@
 
 4. Create a Pull Request. - After making changes, click on pull requests button that opens a window saying "Create a Pull Request". Here you complete the formalities and do it!
 
-Note: Well, if you need detailed info on Pull request, read this https://www.atlassian.com/git/tutorials/making-a-pull-request.
+## **Note: If you need detailed info on Pull request**
+- https://www.atlassian.com/git/tutorials/making-a-pull-request.
+
+## **A to Z for Open Source Contribution**
+- [The Definitive Guide to Contributing to Open Source](https://medium.freecodecamp.org/the-definitive-guide-to-contributing-to-open-source-900d5f9f2282) by [@DoomHammerNG](https://twitter.com/DoomHammerNG)
+- [An Intro to Open Source](https://www.digitalocean.com/community/tutorial_series/an-introduction-to-open-source) - Tutorials by DigitalOcean to guide you on your way to contribution success here on GitHub.
+- [Open Source Guides](https://opensource.guide/) - Collection of resources for individuals, communities, and companies who want to learn how to run and contribute to an Open Source project.
 
 ## Get the Code
 ```bash
@@ -53,8 +53,7 @@ pip3 install -r requirements.txt
 pip install -r requirements.txt
 ```
 
-
-## Tools I've Used
+## Tools Used 
 
 1. Flask
 2. Bootstrap
