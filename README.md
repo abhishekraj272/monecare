@@ -6,9 +6,9 @@
 [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) 
 
-### Let us know more about it!
-### If you have taken loan, it is for you. Keep a record of the repo rates and save more on EMIs in an easier way.
-
+## Let us know more about it!
+### If you have taken a loan, it is for you. Keep a record of the repo rates and save more on EMIs in an easier way. 
+(Developed with Heroku)
 ###  Visit https://monecare.herokuapp.com/ for detailed information.
 
 ## **Output :-**
@@ -19,10 +19,11 @@
 
 ## **New to contribution?**
 
-[The Definitive Guide to Contributing to Open Source](https://medium.freecodecamp.org/the-definitive-guide-to-contributing-to-open-source-900d5f9f2282) by [@DoomHammerNG](https://twitter.com/DoomHammerNG)
+- [The Definitive Guide to Contributing to Open Source](https://medium.freecodecamp.org/the-definitive-guide-to-contributing-to-open-source-900d5f9f2282) by [@DoomHammerNG](https://twitter.com/DoomHammerNG)
 - [An Intro to Open Source](https://www.digitalocean.com/community/tutorial_series/an-introduction-to-open-source) - Tutorials by DigitalOcean to guide you on your way to contribution success here on GitHub.
+- [Open Source Guides](https://opensource.guide/) - Collection of resources for individuals, communities, and companies who want to learn how to run and contribute to an Open Source 
 
-## **Jump here!**
+## **Easy steps to follow:**
 1. Fork this repo. - Click the fork symbol on rightmost top corner of your window.
 
 2. Clone the forked repo. - Click the green button saying "Code" with a download button.
