@@ -1,6 +1,8 @@
-![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
 # MoneCare - Webapp to monitor your Repo Rates
 ### Believe it or not, now you can maintain a log of Repo Rates with MoneCare
+
+![Monocare Logo](https://cdn.jsdelivr.net/gh/abhishekraj272/monecare@latest/app/static/img/monecare.png)
+
 
 [![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

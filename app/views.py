@@ -10,6 +10,10 @@ from json import loads
 def index():
     return render_template("public/index.html")
 
+@app.route("/reqbin-verify.txt")
+def reqbin():
+    return "", 200
+
 
 @app.route("/api/v1/repo-rate", methods=["GET", "PUT"])
 def get_repo_rate():
