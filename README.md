@@ -1,12 +1,13 @@
-# MoneCare - Webapp to monitor your Repo Rates.
+![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
+# MoneCare - Webapp to monitor your Repo Rates
 ### Believe it or not, now you can maintain a log of Repo Rates with MoneCare
 
-![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
+[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+[![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) 
+
 ### Let us know more about it!
-
-[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)  [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-### It will be useful for you, if you have taken loan. Keep a record of the repo rates and save more on EMIs.
+### If you have taken loan, it is for you. Keep a record of the repo rates and save more on EMIs in an easier way.
 
 ###  Visit https://monecare.herokuapp.com/ for detailed information.
 
