@@ -58,7 +58,8 @@ pip install -r requirements.txt
 ## Tools Used 
 
 1. Flask
-2. Bootstrap
-3. MDBootstrap
-4. ChartJS
-5. PyMongo
+2. MongoDB
+3. Bootstrap
+4. MDBootstrap
+5. ChartJS
+6. PyMongo
