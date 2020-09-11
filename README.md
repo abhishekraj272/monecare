@@ -4,7 +4,10 @@
 ![Logomonocare](https://user-images.githubusercontent.com/69141449/92614791-122db880-f2da-11ea-99f1-7a08425241bf.PNG)
 ### Let us know more about it!
 
-[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/firstcontributions/open-source-badges)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)  [![Join the chat at https://gitter.im/monecare/community](https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)]
+(https://github.com/firstcontributions/open-source-badges)[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)]
+(https://opensource.org/licenses/mit-license.php) [![Join the chat at https://gitter.im/monecare/community]
+(https://badges.gitter.im/monecare/community.svg)](https://gitter.im/monecare/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)[![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 
 ## _Keep an eye on repo rates._
 
@@ -18,7 +21,12 @@
 ![image](https://user-images.githubusercontent.com/69141449/92616556-0216d880-f2dc-11ea-9384-e091b20f82f4.png)
 
 
-## **How to Contribute?**
+## **New to contribution?**
+
+[The Definitive Guide to Contributing to Open Source](https://medium.freecodecamp.org/the-definitive-guide-to-contributing-to-open-source-900d5f9f2282) by [@DoomHammerNG](https://twitter.com/DoomHammerNG)
+- [An Intro to Open Source](https://www.digitalocean.com/community/tutorial_series/an-introduction-to-open-source) - Tutorials by DigitalOcean to guide you on your way to contribution success here on GitHub.
+
+## **Jump here!**
 1. Fork this repo. - Click the fork symbol on rightmost top corner of your window.
 
 2. Clone the forked repo. - Click the green button saying "Code" with a download button.
