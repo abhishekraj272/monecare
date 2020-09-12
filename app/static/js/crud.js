@@ -7,8 +7,9 @@ $( document  ).ready(function(){
     target_rows.each(function(){
         $(this).mouseenter(handleMouseEnter);
         $(this).mouseleave(handleMouseLeave);
+        $(this).children(".column3").children("#editRow").click(editRow);
+        $(this).children(".column3").children("#deleteRow").click(deleteRow);
     });
-
 
 
     function handleMouseEnter(){
@@ -18,6 +19,7 @@ $( document  ).ready(function(){
         my_grandchildren.addClass('visible');
     }
 
+
     function handleMouseLeave(){
         //We want to target the i elements in column 3 and make them invisible
         let my_grandchildren = $(this).children('.column3').children('i');
@@ -25,5 +27,14 @@ $( document  ).ready(function(){
         my_grandchildren.addClass('invisible');
     }
 
+
+    function editRow(){
+       console.log("Edit"); 
+    }
+
+
+    function deleteRow(){
+        console.log("Delete");
+    }
 });
 
