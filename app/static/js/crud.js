@@ -1,15 +1,20 @@
 /**
  * Adds event listeners for all <tr> in the data table: mouseenter, mouse leave
- * Also adds evnet listeners for icons in the 3rd column: click
+ * Also adds event listeners for icons in the 3rd column: click
  */
-export function assignEventHandlers(){
+export function initCRUD(){
+    $('.container').append(`<span class="d-none" id="editCount">0</span>`)
     let target_rows = $('.datarow');
     target_rows.each(function(){
-        $(this).mouseenter(handleMouseEnter);
-        $(this).mouseleave(handleMouseLeave);
-        $(this).children(".column3").children("#editRow").click(editRow);
-        $(this).children(".column3").children("#deleteRow").click(deleteRow);
+        initRow($(this));
     });
+}
+
+function initRow(row){
+    row.mouseenter(handleMouseEnter);
+    row.mouseleave(handleMouseLeave);
+    row.children(".column3").children("#editRow").click(editRow);
+    row.children(".column3").children("#deleteRow").click(deleteRow);
 }
 
 /**
@@ -89,15 +94,6 @@ function createInlineForm(row_id,form){
 }
 
 
-function inlineCancelClick(row, date, rate, actions){
-    let date_element = row.children('.column1');
-    let rate_element = row.children('.column2');
-    let actions_element = row.children('.column3');
-
-    date_element.html(date);
-    rate_element.html(rate);
-    actions_element.html(actions);
-}
 /**
  * Returns object containing data for selected row
  * @param {String} row_id The ID of the row to read data from
