@@ -75,6 +75,16 @@ ul, li {
 }
 
 /*//////////////////////////////////////////////////////////////////
+[ Fontawesome Icons ]*/
+.fa-trash, .fa-edit{
+    opacity: 0.4;
+    transition: opacity 0.5s ease-out; 
+}
+.fa-trash:hover, .fa-edit:hover {
+    opacity: 1;
+    color: red;
+}
+/*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 .table100 {
   background-color: #fff;
@@ -95,11 +105,13 @@ th, td {
 }
 
 .column2 {
-  width: 13%;
+  width: 15%;
+  text-align: center;
 }
 
 .column3 {
-  width: 22%;
+  width: 10%;
+  text-align: right;
 }
 
 .table100-head th {
