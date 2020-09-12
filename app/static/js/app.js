@@ -30,10 +30,14 @@ function generateTable() {
   for (let i = 0; i < timeArr.length; i++) {
     $(".t-body").prepend(
       `
-      <tr class="row100 body">
+        <tr class="row100 body datarow">
                     <td class="cell100 column1">${timeArr[i]}</td>
                     <td class="cell100 column2">${rateArr[i]}</td>
-                </tr>
+                    <td class="cell100 column3">
+                       <i id="editRow" class="fas fa-edit px-2 invisible" ></i> 
+                       <i id="deleteRow" class="fas fa-trash px-1 invisible"></i>
+                    </td>
+        </tr>
       `
     );
   }
