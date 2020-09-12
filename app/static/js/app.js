@@ -1,3 +1,5 @@
+import {assignEventHandlers} from './crud.js'
+
 let url = window.location.origin + "/api/v1/repo-rate";
 let timeArr = [];
 let rateArr = [];
@@ -19,6 +21,7 @@ $.ajax({
     }
 
     generateTable();
+    assignEventHandlers();
     generateGraph();
   },
   error: function (data) {
