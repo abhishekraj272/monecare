@@ -1,6 +1,9 @@
+/**
+ * Adds event listeners for all <tr> in the data table: mouseenter, mouse leave
+ * Also adds evnet listeners for icons in the 3rd column: click
+ */
 export function assignEventHandlers(){
     let target_rows = $('.datarow');
-    //Handle mouse enter and leave events for each row
     target_rows.each(function(){
         $(this).mouseenter(handleMouseEnter);
         $(this).mouseleave(handleMouseLeave);
