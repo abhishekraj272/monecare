@@ -1,5 +1,4 @@
 {% macro table() %}
-
 <div class="table100 ver1 m-b-110">
     <div class="table100-head">
         <table>
@@ -7,6 +6,8 @@
                 <tr class="row100 head">
                     <th class="cell100 column1">Update Date</th>
                     <th class="cell100 column2">Repo Rate</th>
+                    <th class="cell100 column3"> 
+                    </th>
                 </tr>
             </thead>
         </table>
@@ -14,7 +15,7 @@
 
     <div class="table100-body js-pscroll">
         <table>
-            <tbody class="t-body">
+            <tbody id="dataBody" class="t-body">
                 <!-- Data Insering Here -->						
             </tbody>
         </table>
