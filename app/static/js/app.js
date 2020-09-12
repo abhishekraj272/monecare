@@ -38,7 +38,7 @@ function generateTable() {
                     <td class="cell100 column2">${rateArr[i]}</td>
                     <td class="cell100 column3">
                        <i id="editRow" class="fas fa-edit px-2 invisible" ></i> 
-                       <i id="deleteRow" class="fas fa-trash px-1 invisible"></i>
+                       <i id="deleteRow" class="fas fa-trash pr-3 invisible"></i>
                     </td>
         </tr>
       `
