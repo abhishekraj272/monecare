@@ -43,6 +43,7 @@ function generateTable() {
         </tr>
       `
     );
+      $(".t-body tr:first").attr("id","tr"+i);
   }
 }
 
