@@ -66,24 +66,10 @@ ul, li {
 
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
-
-
-
-
 .wrap-table100 {
   width: 1170px;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ Fontawesome Icons ]*/
-.fa-trash, .fa-edit{
-    opacity: 0.4;
-    transition: opacity 0.5s ease-out; 
-}
-.fa-trash:hover, .fa-edit:hover {
-    opacity: 1;
-    color: red;
-}
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 .table100 {
@@ -385,14 +371,14 @@ th, td {
 }
 
 .table100.ver5 .table100-body tr {
-  overflow: hidden; 
+  overflow: hidden;
   border-bottom: 10px solid #fff;
   border-radius: 10px;
 }
 
-.table100.ver5 .table100-body table { 
-  border-collapse: separate; 
-  border-spacing: 0 10px; 
+.table100.ver5 .table100-body table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
 }
 .table100.ver5 .table100-body td {
     border: solid 1px transparent;
@@ -402,13 +388,13 @@ th, td {
 }
 .table100.ver5 .table100-body td:first-child {
     border-left-style: solid;
-    border-top-left-radius: 10px; 
+    border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 .table100.ver5 .table100-body td:last-child {
     border-right-style: solid;
-    border-bottom-right-radius: 10px; 
-    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .table100.ver5 tr:hover td {

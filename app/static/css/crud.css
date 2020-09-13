@@ -1,0 +1,43 @@
+
+/*//////////////////////////////////////////////////////////////////
+[ Fontawesome Icons for edit and delete row]*/
+#editRow, #deleteRow{
+    opacity: 0.4;
+    transition: opacity 0.5s ease-out;
+}
+
+#editRow:hover, #deleteRow:hover {
+    opacity: 1;
+    color: red;
+}
+
+#inlineSubmit, #inlineCancel{
+    display: inline-block;
+    padding: 10px;
+}
+
+
+#inlineSubmit, #inlineCancel i{
+}
+#inlineSubmit{
+    background-color: #dcedc8 !important;
+}
+
+#inlineCancel{
+    background-color: #FFE6EE !important;
+}
+
+.inlineForm{
+    animation-name: pulse-red;
+    animation-iteration-count: 1;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pulse-red{
+    0%,60%{ background-color: rgba(255,102,102,0); }
+    20%,80%{ background-color: rgba(255,102,102,0.5); }
+    40%,100%{ background-color: rgba(255,102,102,1); }
+}
