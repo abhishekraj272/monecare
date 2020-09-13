@@ -9,7 +9,10 @@ export function initCRUD() {
   //As the inline form elements are created in a table they need to be assigned to a form
   //via the 'form' attribute. Create forms for each endpoint you want to submit data to.
   //You can see these forms used starting in the editRow and deleteRow functions.
-  $(".container").append(`<form action="" method="PUT" id="edit_form"></form>`);
+  // NOTE: If you add a new form here, make sure you add a function to handle submissions
+  // see @handleFormSubmit
+
+  $(".container").append(`<form action="" method="" id="edit_form"></form>`);
   $("container").append(
     `<form action="" method="DELETE" id="delete_form"></form>`
   );
@@ -93,10 +96,7 @@ function createInlineForm(row_id, form) {
         inline_counter("dec");
       });
 
-      //$("inlineSubmit").click(handleFormSubmit("TEST"));
-      $("inlineSubmit").click(function () {
-        alert("TEST");
-      });
+      $("#inlineSubmit").click({ selected_row: row_id }, handleFormSubmit);
     } else {
       //if (!$.isEmptyObject(row_data)) {
       console.log("Cannot read row data for " + row);
@@ -107,8 +107,42 @@ function createInlineForm(row_id, form) {
   }
 }
 
+/**
+ * Direct form data to appropriate function based on which form the submit
+ * was attached to
+ *
+ * @params {Event Object} e event information
+ */
 function handleFormSubmit(e) {
-  alert(e);
+  let form = e.currentTarget.form.id;
+
+  switch (form) {
+    case "edit_form":
+      handleEditForm(e.data.row_id);
+      break;
+    case "delete_form":
+      console.log("delete");
+      break;
+
+    default:
+      console.log(`Can not handle submissions for form ${form}`);
+  }
+}
+
+/**
+ * Tries to verify and validate user input if the user
+ * submits to edit a row. Submits the request if all is ok.
+ *
+ * @param {String} row_id ID of the row being edited
+ */
+function handleEditForm(row_id) {
+  let new_date = $("input[name=date]").val();
+  let new_rate = $("input[name=rate]").val();
+
+  if (new_date || new_rate) {
+  } else {
+    console.log("No values");
+  }
 }
 /**
  * Plays css animation to draw users attention to the open inline form
@@ -138,13 +172,13 @@ function get_inline_edit_row(row_id, row_data, form) {
   let row = `
                         <tr class="cell100 body datarow inlineForm" id="edit_${row_id}">
                             <td class="cell100 column1">
-                                <input type="text" class="form-control" placeholder="${row_data.date}" name="date" form="${form}"/>
+                                <input type="text" class="form-control" placeholder="${row_data.date}" name="date" form="${form}" required>
                             </td>
                             <td class="cell100 column2">
-                                <input type="text" class="form-control" placeholder="${row_data.rate}" name="rate" form="${form}"/>
+                                <input type="text" class="form-control" placeholder="${row_data.rate}" name="rate" form="${form}" required>
                             </td>
                             <td class="cell100 column3">
-                                <button id="inlineSubmit" type="submit" class="btn btn-outline-success p-1 rounded" form="${form}">
+                                <button id="inlineSubmit" type="button" class="btn btn-outline-success p-1 rounded" form="${form}">
                                     <i class="fas fa-check"></i>
                                 </button>
 
