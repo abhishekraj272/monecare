@@ -7,14 +7,12 @@
     padding: 5px;
 }
 
+
 #editRow:hover, #deleteRow:hover {
     opacity: 1;
     color: red;
 }
-.dataRow{
-    position: relative;
-    padding: 10px;
-}
+
 
 #inlineSubmit, #inlineCancel{
     display: inline-block;
@@ -27,14 +25,20 @@
     text-align: center;
 }
 
+
 #inlineSubmit{
     background-color: #dcedc8 !important;
 }
+
 
 #inlineCancel{
     background-color: #FFE6EE !important;
 }
 
+
+/**
+ * Animation settings used to draw users attention to currently opened inline form
+ */
 .inlineForm{
     animation-name: pulse-red;
     animation-iteration-count: 1;
