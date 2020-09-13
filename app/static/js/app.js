@@ -33,7 +33,7 @@ function generateTable() {
   for (let i = 0; i < timeArr.length; i++) {
     $(".t-body").prepend(
       `
-        <tr class="row100 body datarow">
+        <tr id="tr${i}" class="row100 body datarow">
                     <td class="cell100 column1">${timeArr[i]}</td>
                     <td class="cell100 column2">${rateArr[i]}</td>
                     <td class="cell100 column3">
@@ -43,7 +43,6 @@ function generateTable() {
         </tr>
       `
     );
-    $(".t-body tr:first").attr("id", "tr" + i);
   }
 }
 
