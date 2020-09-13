@@ -141,7 +141,11 @@ function handleEditForm(row_id) {
 
   if (new_date || new_rate) {
   } else {
-    console.log("No values");
+    //Tell the user they need to enter data and refocus to the text input
+    create_alert("You must enter some values before submitting");
+    $(".alert").on("closed.bs.alert", function () {
+      $("input[name=date]").focus();
+    });
   }
 }
 /**
@@ -232,4 +236,21 @@ function get_row_data(row_id) {
     obj.rate = repo_rate;
   }
   return obj;
+}
+
+/**
+ * Creates a bootstrap alert
+ * @param {String} msg Message to display in alert
+ */
+function create_alert(msg) {
+  let alert_html = `
+                    <div class="alert alert-warning fade show" role="alert">
+                        ${msg}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidde="true">&times;</span>
+                        </button>
+                    </div>
+    `;
+
+  $(".container").prepend(alert_html);
 }
