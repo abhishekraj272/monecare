@@ -57,18 +57,64 @@ function deleteRow() {}
  * @param {String} form Which form the generated elements belong to
  */
 function createInlineForm(row_id, form) {
+  //We only want to allow the user to edit one row.
   if (inline_counter() === 0) {
-    inline_counter("inc");
     let row = $("#" + row_id);
     let row_data = get_row_data(row_id);
+    //If we have successful obtained the current data for the row
     if (!$.isEmptyObject(row_data)) {
-      let new_row = `
-                        <tr class="cell100 body datarow" id="edit_${row_id}">
+      // Flag that we have an inline form and display it.
+      inline_counter("inc");
+      let new_row = get_inline_edit_row(row_id, row_data, form);
+      row.before(new_row);
+      row.toggle();
+
+      // What happens if the user clicks the cancel button on
+      // newly inserted inline form
+      $("#inlineCancel").click(function () {
+        //Remove the inline form and display the old row
+        $("#edit_" + row_id).remove();
+        row.toggle();
+        inline_counter("dec");
+      });
+    } else {
+      //if (!$.isEmptyObject(row_data)) {
+      console.log("Cannot read row data for " + row);
+    }
+  } else {
+    // Alert use they have an inline form already
+    highlight_inline_form();
+  }
+}
+
+function highlight_inline_form() {
+  let row = $(".inlineForm");
+  if (row) {
+    row.css("animation-play-state", "running");
+    //Have this value be the same or greater than the animation-duration in crud.css
+    let animation_length = 1000;
+    setTimeout(function () {
+      row.css("animation-play-state", "paused");
+    }, animation_length);
+  }
+}
+
+/**
+ * Generate HTML string to insert inline form to edit a row
+ *
+ * @param {String} row_id The ID of the row we are going to insert the form into
+ * @param {Object} row_data The old text values of each <TD> in this row
+ * @param {String} form The ID of the form that the form elements belong to
+ * @return {String} HTML String for the new row content
+ */
+function get_inline_edit_row(row_id, row_data, form) {
+  let row = `
+                        <tr class="cell100 body datarow inlineForm" id="edit_${row_id}">
                             <td class="cell100 column1">
-                                <input type="text" value="${row_data.date}" name="date" form="${form}"/>
+                                <input type="text" class="form-control" placeholder="${row_data.date}" name="date" form="${form}"/>
                             </td>
                             <td class="cell100 column2">
-                                <input type="text" value="${row_data.rate}" name="date" form="${form}"/>
+                                <input type="text" class="form-control" placeholder="${row_data.rate}" name="date" form="${form}"/>
                             </td>
                             <td class="cell100 column3">
                                 <button id="inlineSubmit" type="submit" class="btn btn-outline-success p-1 rounded" form="${form}">
@@ -81,20 +127,7 @@ function createInlineForm(row_id, form) {
                             </td>
                         </tr>
                       `;
-      row.before(new_row);
-      row.toggle();
-
-      $("#inlineCancel").click(function () {
-        $("#edit_" + row_id).remove();
-        row.toggle();
-        inline_counter("dec");
-      });
-    } else {
-      //if (!$.isEmptyObject(row_data)) {
-      console.log("Cannot read row data for " + row);
-    }
-  }
-  // Alert use they have an inline form already
+  return row;
 }
 
 /**

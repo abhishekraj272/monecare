@@ -4,21 +4,29 @@
 #editRow, #deleteRow{
     opacity: 0.4;
     transition: opacity 0.5s ease-out;
+    padding: 5px;
 }
 
 #editRow:hover, #deleteRow:hover {
     opacity: 1;
     color: red;
 }
+.dataRow{
+    position: relative;
+    padding: 10px;
+}
 
 #inlineSubmit, #inlineCancel{
     display: inline-block;
-    padding: 10px;
+    padding: 5px;
 }
 
 
 #inlineSubmit, #inlineCancel i{
+    font-size: 0.75rem;
+    text-align: center;
 }
+
 #inlineSubmit{
     background-color: #dcedc8 !important;
 }
@@ -32,7 +40,7 @@
     animation-iteration-count: 1;
     animation-duration: 0.75s;
     animation-timing-function: ease-out;
-    animation-play-state: running;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
 }
 
