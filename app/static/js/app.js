@@ -1,4 +1,4 @@
-import {initCRUD} from './crud.js'
+import { initCRUD } from "./crud.js";
 
 let url = window.location.origin + "/api/v1/repo-rate";
 let timeArr = [];
@@ -37,13 +37,13 @@ function generateTable() {
                     <td class="cell100 column1">${timeArr[i]}</td>
                     <td class="cell100 column2">${rateArr[i]}</td>
                     <td class="cell100 column3">
-                       <i id="editRow" class="fas fa-edit px-2 invisible" ></i> 
-                       <i id="deleteRow" class="fas fa-trash pr-3 invisible"></i>
+                       <i id="editRow" class="fas fa-edit invisible" ></i> 
+                       <i id="deleteRow" class="fas fa-trash invisible"></i>
                     </td>
         </tr>
       `
     );
-      $(".t-body tr:first").attr("id","tr"+i);
+    $(".t-body tr:first").attr("id", "tr" + i);
   }
 }
 
@@ -77,45 +77,41 @@ function generateGraph() {
   });
 }
 
-let anaytics = []
-$.getJSON('http://www.geoplugin.net/json.gp?jsoncallback=?', function(data) {
+let anaytics = [];
+$.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", function (data) {
   analytics = JSON.stringify(data, null, 2);
 });
 
-$(document).ready(function() {
-
+$(document).ready(function () {
   // process the form
-  $('form').submit(function(event) {
+  $("form").submit(function (event) {
+    // get the form data
+    // there are many ways to get this data using jQuery (you can use the class or id also)
+    var formData = {
+      name: $("input[name=name]").val(),
+      email: $("input[name=email]").val(),
+      analytics: analytics,
+    };
 
-      // get the form data
-      // there are many ways to get this data using jQuery (you can use the class or id also)
-      var formData = {
-          'name'              : $('input[name=name]').val(),
-          'email'             : $('input[name=email]').val(),
-          'analytics'    : analytics
-      };
+    let csrf_token = $("input[name=csrf_token]").val();
 
-      let csrf_token = $('input[name=csrf_token]').val()
+    // process the form
+    $.ajax({
+      type: "PUT",
+      url: "api/v1/subscribe",
+      data: formData,
+      dataType: "json",
+      headers: { "X-CSRFToken": csrf_token },
+    })
+      // using the done promise callback
+      .done(function (data) {
+        // log data to the console so we can see
+        alert("Your response has been recorded.");
 
-      // process the form
-      $.ajax({
-          type        : 'PUT', 
-          url         : 'api/v1/subscribe',
-          data        : formData, 
-          dataType    : 'json',
-          headers     : {'X-CSRFToken': csrf_token}
-      })
-          // using the done promise callback
-          .done(function(data) {
+        // here we will handle errors and validation messages
+      });
 
-              // log data to the console so we can see
-              alert("Your response has been recorded.")
-
-              // here we will handle errors and validation messages
-          });
-
-      // stop the form from submitting the normal way and refreshing the page
-      event.preventDefault();
+    // stop the form from submitting the normal way and refreshing the page
+    event.preventDefault();
   });
-
 });
