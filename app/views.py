@@ -44,7 +44,7 @@ def get_repo_rate():
         print(repo_rate)
 
         if date and repo_rate:
-            data = {"date": {"date": date}, "rate": repo_rate}
+            data = {"date": date, "rate": repo_rate}
 
             try:
                 db.repoRate.insert_one(data)
