@@ -1,10 +1,16 @@
-{% extends "public/base.html" %} {% block index %} 
+{% extends "public/base.html" %} {% block index %}
 {% from 'public/table.html' import table %}
 {% from 'public/subscribe.html' import subscribe %}
+{% from 'public/crud.html' import edit_form, delete_form, add_form %}
 
 <!-- Container Starts-->
 <div class="container mt-5">
   <div class="row">
+      <div class="d-none">
+          {{ edit_form() }}
+          {{ delete_form() }}
+          {{ add_form() }}
+      </div>
     <div class="col-md-8">
       <div class="row">
         <!-- Repo Rate Table -->
