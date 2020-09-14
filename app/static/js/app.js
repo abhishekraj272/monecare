@@ -15,7 +15,8 @@ export function loadPage() {
     data: {},
     success: function (data) {
       data = JSON.parse(data);
-
+      timeArr = [];
+      rateArr = [];
       for (let i = 0; i < data.length; i++) {
         timeArr.push(data[i].date.date);
         rateArr.push(data[i].rate);
@@ -30,8 +31,11 @@ export function loadPage() {
     },
   });
 }
+
 loadPage();
+
 function generateTable() {
+  $(".t-body").empty();
   for (let i = 0; i < timeArr.length; i++) {
     $(".t-body").prepend(
       `
