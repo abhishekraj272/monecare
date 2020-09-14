@@ -49,46 +49,73 @@ function handle_mouse_leave() {
  * Edit the data for the selected row.
  * Row selected via click event on the edit icon
  */
-function editRow() {
+function edit_row() {
   let row_id = $(this).parent().parent().attr("id");
-  createInlineForm(row_id, "edit_form");
+  create_inline_form(row_id, "edit_form");
 }
 
 /**
  * Delete the selected row
  * Row selected via click event
  */
-function deleteRow() {}
+function delete_row() {
+  let row_id = $(this).parent().parent().attr("id");
+  create_inline_form(row_id, "delete_form");
+}
 
 /**
  * Creates an inline form when the user decides to edit a row
  * @param {String} row_id ID of the row to create an inline form for
  * @param {String} form Which form the generated elements belong to
  */
-function createInlineForm(row_id, form) {
+function create_inline_form(row_id, form) {
   //We only want to allow the user to edit one row.
   if (inline_counter() === 0) {
     let row = $("#" + row_id);
     let row_data = get_row_data(row_id);
-    //If we have successful obtained the current data for the row
-    if (!$.isEmptyObject(row_data)) {
-      // Flag that we have an inline form and display it.
-      inline_counter("inc");
-      let new_row = get_inline_edit_row(row_id, row_data, form);
-      row.before(new_row);
-      row.toggle();
 
-      // What happens if the user clicks the cancel button on
-      // newly inserted inline form
-      $("#inlineCancel").click(function () {
-        //Remove the inline form and display the old row
-        cancel_inline_form(row_id);
-      });
+    //Used to access inline form via DOM
+    let prefix;
+    let new_row;
 
-      $("#inlineSubmit").click({ selected_row: row_id }, handleFormSubmit);
+    if (form === "edit_form") {
+      prefix = "edit_";
+      new_row = get_inline_edit_row(row_id, row_data, form);
+    }
+
+    if (form === "delete_form") {
+      prefix = "delete_";
+      new_row = get_inline_delete_row(row_id, row_data, form);
+    }
+
+    if (prefix) {
+      //If we have successful obtained the current data for the row
+      if (!$.isEmptyObject(row_data)) {
+        // Flag that we have an inline form and display it.
+        inline_counter("inc");
+
+        if (new_row) {
+          row.before(new_row);
+          row.toggle();
+        } else {
+          console.log("Error in create_inline_form with new_row");
+          inline_counter("dec");
+        }
+
+        // What happens if the user clicks the cancel button on
+        // newly inserted inline form
+        $("#inlineCancel").click(function () {
+          //Remove the inline form and display the old row
+          cancel_inline_form(row_id, prefix + row_id);
+        });
+
+        $("#inlineSubmit").click({ selected_row: row_id }, handle_form_submit);
+      } else {
+        //if (!$.isEmptyObject(row_data)) {
+        console.log("Cannot read row data for " + row);
+      }
     } else {
-      //if (!$.isEmptyObject(row_data)) {
-      console.log("Cannot read row data for " + row);
+      console.log("Cannot generate prefix for form ${form}");
     }
   } else {
     // Alert to user they have an inline form already
