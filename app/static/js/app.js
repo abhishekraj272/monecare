@@ -18,7 +18,7 @@ export function loadPage() {
       timeArr = [];
       rateArr = [];
       for (let i = 0; i < data.length; i++) {
-        timeArr.push(data[i].date.date);
+        timeArr.push(data[i].date);
         rateArr.push(data[i].rate);
       }
 
