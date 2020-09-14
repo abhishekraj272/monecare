@@ -1,7 +1,6 @@
 {% macro edit_form() %}
-
     <form action="/api/v1/repo-rate" method="PUT" id="edit_form">
-        <input type="text" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       </form>
 
 {% endmacro %}
