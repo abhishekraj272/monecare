@@ -91,9 +91,7 @@ function createInlineForm(row_id, form) {
       // newly inserted inline form
       $("#inlineCancel").click(function () {
         //Remove the inline form and display the old row
-        $("#edit_" + row_id).remove();
-        row.toggle();
-        inline_counter("dec");
+        cancel_inline_form(row_id);
       });
 
       $("#inlineSubmit").click({ selected_row: row_id }, handleFormSubmit);
@@ -115,10 +113,9 @@ function createInlineForm(row_id, form) {
  */
 function handleFormSubmit(e) {
   let form = e.currentTarget.form.id;
-
   switch (form) {
     case "edit_form":
-      handleEditForm(e.data.row_id);
+      handleEditForm(e.data.selected_row);
       break;
     case "delete_form":
       console.log("delete");
@@ -136,17 +133,87 @@ function handleFormSubmit(e) {
  * @param {String} row_id ID of the row being edited
  */
 function handleEditForm(row_id) {
-  let new_date = $("input[name=date]").val();
-  let new_rate = $("input[name=rate]").val();
+  let new_date = $("input[name=date]").val().trim();
+  let new_rate = $("input[name=repo_rate]").val().trim();
 
+  // User has entered some new data
   if (new_date || new_rate) {
+    let old_data = get_row_data(row_id);
+
+    //If the user has entered a new date and rate, or just a new date
+    //and these pieces of data match the old values create an alert
+    //and return focus to the date textbox
+    if (
+      (old_data.date === new_date && old_data.rate === new_rate) ||
+      (old_data.date === new_date && !new_rate)
+    ) {
+      create_alert("You must enter a new value", "alert2");
+      $("#alert2").on("closed.bs.alert", function () {
+        $("input[name=date]").focus();
+      });
+      return;
+    }
+
+    //If the user has entered a new rate and no date
+    //but the rate matches the old one create an alert
+    //and return focus to the rate textbox
+    if (old_data.rate === new_rate && !new_date) {
+      create_alert("You must enter a new value", "alert3");
+      $("#alert3").on("closed.bs.alert", function () {
+        $("input[name=repo_rate]").focus();
+      });
+      return;
+    }
+
+    //If the user only wants to edit one property, supply the old value
+    //for the other property they haven't changed
+    if (!new_date) {
+      $("input[name=date]").val(old_data.date);
+    }
+
+    if (!new_rate) {
+      $("input[name=repo_rate]").val(old_data.rate);
+    }
+
+    //Submit to server via ajax
+    let form = $("#edit_form");
+    let csrf_token = form.children("input[name=csrf_token]").val();
+    let form_data = {
+      date: $("input[name=date]").val(),
+      repo_rate: $("input[name=repo_rate]").val(),
+      old_date: old_data.date,
+      old_repo_rate: old_data.rate,
+    };
+
+    $.ajax({
+      type: form.attr("method"),
+      url: form.attr("action"),
+      headers: {
+        "API-KEY": "qwerty",
+        "X-CSRFToken": csrf_token,
+      },
+      data: form_data,
+    })
+      .done(function (data) {
+        loadPage();
+      })
+      .fail(function (data) {
+        console.log("FAIL" + JSON.stringify(data));
+      });
+    //User has not entered any data
+    //Create an alert and return focus to date input
   } else {
-    //Tell the user they need to enter data and refocus to the text input
-    create_alert("You must enter some values before submitting");
-    $(".alert").on("closed.bs.alert", function () {
+    create_alert("You must enter some values before submitting", "alert1");
+    $("#alert1").on("closed.bs.alert", function () {
       $("input[name=date]").focus();
     });
   }
+}
+
+function cancel_inline_form(row_id) {
+  $("#edit_" + row_id).remove();
+  $("#" + row_id).toggle();
+  inline_counter("dec");
 }
 /**
  * Plays css animation to draw users attention to the open inline form
