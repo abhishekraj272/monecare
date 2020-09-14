@@ -7,6 +7,8 @@ export function initCRUD() {
   //Acts as a static variable to keep count of how many inline forms have been created
   $(".container").append(`<span class="d-none" id="editCount">0</span>`);
 
+  $("#addRow").click(add_row);
+
   let target_rows = $(".datarow");
   target_rows.each(function () {
     initRow($(this));
@@ -44,6 +46,13 @@ function handle_mouse_leave() {
   let my_grandchildren = $(this).children(".column3").children("i");
   my_grandchildren.removeClass("visible");
   my_grandchildren.addClass("invisible");
+}
+/**
+ * Let user add new row. Insert into the first row in table
+ */
+function add_row() {
+  let row_id = $(".t-body").children("tr").first().attr("id");
+  create_inline_form(row_id, "add_form");
 }
 /**
  * Edit the data for the selected row.
@@ -86,6 +95,11 @@ function create_inline_form(row_id, form) {
     if (form === "delete_form") {
       prefix = "delete_";
       new_row = get_inline_delete_row(row_id, row_data, form);
+    }
+
+    if (form === "add_form") {
+      prefix = "add_";
+      new_row = get_inline_add_row(row_id, form);
     }
 
     if (prefix) {
@@ -137,6 +151,9 @@ function handle_form_submit(e) {
       break;
     case "delete_form":
       handle_delete_form(e.data.selected_row);
+      break;
+    case "add_form":
+      handle_add_form(e.data.selected_row);
       break;
     default:
       console.log(`Can not handle submissions for form ${form}`);
@@ -295,6 +312,37 @@ function highlight_inline_form() {
   }
 }
 
+/**
+ * Generate HTML string to insert inline form to add a row
+ *
+ * @param {String} row_id The ID of the row we are going to insert the form into
+ * @param {String} form The ID of the form that the form elements belong to
+ * @return {String} HTML String for the new row content
+ */
+function get_inline_add_row(row_id, form) {
+  let row = `
+                <tr class="cell100 body datarow inlineForm" id="add_${row_id}">
+                    <td class="cell100 column1">
+                        <input type="text" class="form-control" placeholder="DD MMM YY" name="date" form="${form}" required>
+                    </td>
+
+                    <td class="cell100 column2">
+                        <input type="text" class="form-control" placeholder="x.xx" name="repo_rate" form="${form}" required>
+                    </td>
+                    <td class="cell100 column3">
+                        <button id="inlineSubmit" type="button" class="btn btn-outline-success p-1 rounded" form="${form}">
+                            <i class="fas fa-check"></i>
+                        </button>
+
+                        <button id="inlineCancel" type="button" class="btn btn-outline-danger p-1 rounded" form="${form}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                </tr>
+    `;
+
+  return row;
+}
 /**
  * Generate HTML string to insert inline form to edit a row
  *
