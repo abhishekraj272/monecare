@@ -58,7 +58,26 @@ def get_repo_rate():
 
         return {"response": "Failed", "output": "Invalid input"}, 400
 
+    if request.method == "PUT":
+        date = request.form.get('date')
+        repo_rate = request.form.get('repo_rate')
+        old_date = request.form.get('old_date')
+        old_repo_rate = request.form.get('old_repo_rate')
+
+        if date and repo_rate:
+            try:
+                record = {'date': old_date, 'rate': old_repo_rate}
+                new_values = {"$set": {'date': date, 'rate': repo_rate}}
+                db.repoRate.update_one(record, new_values)
+                return {"output": "Success"}, 200
+            except Exception as e:
                 print(e, file=sys.stderr)
+                return {"output": "Database error"}, 400
+
+        return {
+            "response": "Failed",
+            "output": "Invalid input",
+        }, 400
 
                 print(e, file=sys.stderr)
 
