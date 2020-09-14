@@ -237,7 +237,7 @@ function get_inline_edit_row(row_id, row_data, form) {
                                 <input type="text" class="form-control" placeholder="${row_data.date}" name="date" form="${form}" required>
                             </td>
                             <td class="cell100 column2">
-                                <input type="text" class="form-control" placeholder="${row_data.rate}" name="rate" form="${form}" required>
+                                <input type="text" class="form-control" placeholder="${row_data.rate}" name="repo_rate" form="${form}" required>
                             </td>
                             <td class="cell100 column3">
                                 <button id="inlineSubmit" type="button" class="btn btn-outline-success p-1 rounded" form="${form}">
