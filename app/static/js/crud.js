@@ -326,6 +326,35 @@ function get_inline_edit_row(row_id, row_data, form) {
   return row;
 }
 
+/* Generate HTML string to insert inline form to edit a row
+ *
+ * @param {String} row_id The ID of the row we are going to insert the form into
+ * @param {Object} row_data The old text values of each <TD> in this row
+ * @param {String} form The ID of the form that the form elements belong to
+ * @return {String} HTML String for the new row content
+ */
+function get_inline_delete_row(row_id, row_data, form) {
+  let row = `
+                        <tr class="cell100 body datarow inlineForm" id="delete_${row_id}">
+                            <td class="cell100 column1">
+                                <p> Are you sure you want to delete this row? </p>
+                            </td>
+                            <td class="cell100 column2">
+                                <p><strong>Date:</strong> ${row_data.date} <strong>Rate:</strong> ${row_data.repo_rate} </p>
+                            </td>
+                            <td class="cell100 column3">
+                                <button id="inlineSubmit" type="button" class="btn btn-outline-success p-1 rounded" form="${form}">
+                                    <i class="fas fa-check"></i>
+                                </button>
+
+                                <button id="inlineCancel" type="button" class="btn btn-outline-danger p-1 rounded" form="${form}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                      `;
+  return row;
+}
 /**
  * Used to keep track of how many inline forms have been created
  * Stores value in a hidden span with the id if "editCount".
