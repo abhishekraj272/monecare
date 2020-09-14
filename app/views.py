@@ -98,7 +98,7 @@ def check(email, regex):
 
     # pass the regular expression
     # and the string in search() method
-    if(re.search(regex, email)):
+    if (re.search(regex, email)):
         return True
 
     else:
