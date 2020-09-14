@@ -11,4 +11,8 @@
 {% endmacro %}
 
 
+{% macro add_form() %}
+    <form action="api/v1/repo-rate" method="POST" id="add_form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    </form>
 {% endmacro %}
