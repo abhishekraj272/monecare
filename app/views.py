@@ -11,12 +11,13 @@ from json import loads
 def index():
     return render_template("public/index.html")
 
+
 @app.route("/reqbin-verify.txt")
 def reqbin():
     return "", 200
 
 
-@app.route("/api/v1/repo-rate", methods=["GET", "PUT"])
+@app.route("/api/v1/repo-rate", methods=["GET", "PUT", "POST", "DELETE"])
 def get_repo_rate():
 
     api_key = request.headers.get("API-KEY")
@@ -36,15 +37,19 @@ def get_repo_rate():
 
         return {"output": "Database error"}, 400
 
-    if request.method == "PUT":
-
+    if request.method == "POST":
         date = request.form.get('date')
         repo_rate = request.form.get('repo_rate')
 
         if date and repo_rate:
-            data = {"date": {"date":date}, "rate": repo_rate}
+            data = {"date": date, "rate": repo_rate}
 
             try:
+                if (db.repoRate.find(data).count() > 0):
+                    return {
+                        "response": "Failed",
+                        "output": "Document already exists"
+                    }, 400
                 db.repoRate.insert_one(data)
             except Exception as e:
                 print(e, file=sys.stderr)
