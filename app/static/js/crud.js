@@ -7,16 +7,6 @@ export function initCRUD() {
   //Acts as a static variable to keep count of how many inline forms have been created
   $(".container").append(`<span class="d-none" id="editCount">0</span>`);
 
-  //As the inline form elements are created in a table they need to be assigned to a form
-  //via the 'form' attribute. Create forms for each endpoint you want to submit data to.
-  //You can see these forms used starting in the editRow and deleteRow functions.
-  // NOTE: If you add a new form here, make sure you add a function to handle submissions
-  // see @handleFormSubmit
-
-  $(".container").append(`<form action="" method="" id="edit_form"></form>`);
-  $("container").append(
-    `<form action="" method="DELETE" id="delete_form"></form>`
-  );
   let target_rows = $(".datarow");
   target_rows.each(function () {
     initRow($(this));
@@ -293,6 +283,7 @@ function inline_counter(cmd) {
  * Returns object containing data for selected row
  * @param {String} row_id The ID of the row to read data from
  * @return {object} Empty on failure to read row
+ *                  With 'date' and 'rate' on success
  */
 function get_row_data(row_id) {
   let obj = {};
