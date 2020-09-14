@@ -1,3 +1,4 @@
+import sys
 from app import app, db, csrf
 from flask import render_template, request
 from bson.json_util import dumps
@@ -24,12 +25,11 @@ def get_repo_rate():
         return {"output": "API KEY Invalid"}, 401
 
     if request.method == "GET":
-
         repo_rates = None
         try:
             repo_rates = db.repoRate.find()
         except Exception as e:
-            print(e)
+            print(e, file=sys.stderr)
 
         if repo_rates:
             return dumps(list(repo_rates)), 200
@@ -40,8 +40,6 @@ def get_repo_rate():
 
         date = request.form.get('date')
         repo_rate = request.form.get('repo_rate')
-        print(date)
-        print(repo_rate)
 
         if date and repo_rate:
             data = {"date": {"date":date}, "rate": repo_rate}
@@ -49,12 +47,15 @@ def get_repo_rate():
             try:
                 db.repoRate.insert_one(data)
             except Exception as e:
-                print(e)
+                print(e, file=sys.stderr)
                 return {"output": "Database error"}, 400
             return {"output": "Success"}, 200
 
         return {"response": "Failed", "output": "Invalid input"}, 400
 
+                print(e, file=sys.stderr)
+
+                print(e, file=sys.stderr)
 
 def check(email, regex):
 
@@ -96,5 +97,3 @@ def subscribe():
         return {"output": "Success"}, 200
 
     return {"response": "Failed", "output": "Invalid email"}, 400
-
-    
