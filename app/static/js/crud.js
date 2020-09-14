@@ -163,25 +163,39 @@ function handle_form_submit(e) {
 /**
  *
  */
+function handle_add_form(row_id) {
+  let date = $("input[name=date]").val().trim();
+  let repo_rate = $("input[name=repo_rate]").val().trim();
+  let data = { date: date, repo_rate: repo_rate };
+
+  if (date && repo_rate) {
+    ajax_request("add_form", data)
+      .done(function () {
+        cancel_inline_form(row_id, "add_" + row_id);
+        loadPage();
+      })
+      .fail(function (data) {
+        console.log("FAIL" + JSON.stringify(data));
+        if (!$("#addFail").length) {
+          create_alert("Database issue. Could not add row", "addFail");
+        }
+      });
+  } else {
+    if (!$("#noAddValues").length) {
+      create_alert(
+        "You must enter some values before submitting",
+        "noAddValues"
+      );
+    }
+    $("#noAddValues").on("closed.bs.alert", function () {
+      $("input[name=date]").focus();
+    });
+  }
+}
 function handle_delete_form(row_id) {
   let data = get_row_data(row_id);
 
-  //Submit to server via ajax
-  let form = $("#delete_form");
-  let csrf_token = form.children("input[name=csrf_token]").val();
-
-  $.ajax({
-    type: form.attr("method"),
-    url: form.attr("action"),
-    headers: {
-      "API-KEY": "qwerty",
-      "X-CSRFToken": csrf_token,
-    },
-    data: data,
-  })
-    .done(function (data) {
       cancel_inline_form(row_id, "delete_" + row_id);
-      console.log(JSON.stringify(data));
       loadPage();
     })
     .fail(function (data) {
