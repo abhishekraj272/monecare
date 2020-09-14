@@ -20,16 +20,16 @@ export function initCRUD() {
  * @param (JQuery Object) row The row to handle events for
  */
 function initRow(row) {
-  row.mouseenter(handleMouseEnter);
-  row.mouseleave(handleMouseLeave);
-  row.children(".column3").children("#editRow").click(editRow);
-  row.children(".column3").children("#deleteRow").click(deleteRow);
+  row.mouseenter(handle_mouse_enter);
+  row.mouseleave(handle_mouse_leave);
+  row.children(".column3").children("#editRow").click(edit_row);
+  row.children(".column3").children("#deleteRow").click(delete_row);
 }
 
 /**
  * Make icons visible when user mouse enters a row in the table
  */
-function handleMouseEnter() {
+function handle_mouse_enter() {
   //We want to target the i elements in column 3 and make them visible
   let my_grandchildren = $(this).children(".column3").children("i");
   my_grandchildren.removeClass("invisible");
@@ -39,7 +39,7 @@ function handleMouseEnter() {
 /**
  * Make icons invisible when user mouse leaves a row in the table
  */
-function handleMouseLeave() {
+function handle_mouse_leave() {
   //We want to target the i elements in column 3 and make them invisible
   let my_grandchildren = $(this).children(".column3").children("i");
   my_grandchildren.removeClass("visible");
@@ -102,28 +102,58 @@ function createInlineForm(row_id, form) {
  *
  * @params {Event Object} e event information
  */
-function handleFormSubmit(e) {
+function handle_form_submit(e) {
   let form = e.currentTarget.form.id;
   switch (form) {
     case "edit_form":
-      handleEditForm(e.data.selected_row);
+      handle_edit_form(e.data.selected_row);
       break;
     case "delete_form":
-      console.log("delete");
+      handle_delete_form(e.data.selected_row);
       break;
-
     default:
       console.log(`Can not handle submissions for form ${form}`);
   }
 }
 
 /**
+ *
+ */
+function handle_delete_form(row_id) {
+  let data = get_row_data(row_id);
+
+  //Submit to server via ajax
+  let form = $("#delete_form");
+  let csrf_token = form.children("input[name=csrf_token]").val();
+
+  $.ajax({
+    type: form.attr("method"),
+    url: form.attr("action"),
+    headers: {
+      "API-KEY": "qwerty",
+      "X-CSRFToken": csrf_token,
+    },
+    data: data,
+  })
+    .done(function (data) {
+      cancel_inline_form(row_id, "delete_" + row_id);
+      console.log(JSON.stringify(data));
+      loadPage();
+    })
+    .fail(function (data) {
+      console.log("FAIL" + JSON.stringify(data));
+      if (!$("#deleteFail").length) {
+        create_alert("Database issue. Could not delete row", "deleteFail");
+      }
+    });
+}
+/**
  * Tries to verify and validate user input if the user
  * submits to edit a row. Submits the request if all is ok.
  *
  * @param {String} row_id ID of the row being edited
  */
-function handleEditForm(row_id) {
+function handle_edit_form(row_id) {
   let new_date = $("input[name=date]").val().trim();
   let new_rate = $("input[name=repo_rate]").val().trim();
 
@@ -163,7 +193,7 @@ function handleEditForm(row_id) {
     }
 
     if (!new_rate) {
-      $("input[name=repo_rate]").val(old_data.rate);
+      $("input[name=repo_rate]").val(old_data.repo_rate);
     }
 
     //Submit to server via ajax
@@ -173,7 +203,7 @@ function handleEditForm(row_id) {
       date: $("input[name=date]").val(),
       repo_rate: $("input[name=repo_rate]").val(),
       old_date: old_data.date,
-      old_repo_rate: old_data.rate,
+      old_repo_rate: old_data.repo_rate,
     };
 
     $.ajax({
@@ -186,23 +216,36 @@ function handleEditForm(row_id) {
       data: form_data,
     })
       .done(function (data) {
+        cancel_inline_form(row_id, "edit_" + row_id);
         loadPage();
       })
       .fail(function (data) {
         console.log("FAIL" + JSON.stringify(data));
+        if (!$("#dbEditRow").length) {
+          create_alert("Database issue: Couldn't edit row", "dbEditRow");
+        }
       });
     //User has not entered any data
     //Create an alert and return focus to date input
   } else {
-    create_alert("You must enter some values before submitting", "alert1");
-    $("#alert1").on("closed.bs.alert", function () {
+    if (!$("#noEditValues").length) {
+      create_alert(
+        "You must enter some values before submitting",
+        "noEditValues"
+      );
+    }
+    $("#noEditValues").on("closed.bs.alert", function () {
       $("input[name=date]").focus();
     });
   }
 }
 
-function cancel_inline_form(row_id) {
-  $("#edit_" + row_id).remove();
+/**
+ * Removes the inline form and displays the row it was inserted into
+ * @param (String) row_id The id of the row to display and remove form from
+ */
+function cancel_inline_form(row_id, inline_form_id) {
+  $("#" + inline_form_id).remove();
   $("#" + row_id).toggle();
   inline_counter("dec");
 }
@@ -237,7 +280,7 @@ function get_inline_edit_row(row_id, row_data, form) {
                                 <input type="text" class="form-control" placeholder="${row_data.date}" name="date" form="${form}" required>
                             </td>
                             <td class="cell100 column2">
-                                <input type="text" class="form-control" placeholder="${row_data.rate}" name="repo_rate" form="${form}" required>
+                                <input type="text" class="form-control" placeholder="${row_data.repo_rate}" name="repo_rate" form="${form}" required>
                             </td>
                             <td class="cell100 column3">
                                 <button id="inlineSubmit" type="button" class="btn btn-outline-success p-1 rounded" form="${form}">
@@ -292,7 +335,7 @@ function get_row_data(row_id) {
   let repo_rate = row.children(".column2").text();
   if (update_date && repo_rate) {
     obj.date = update_date;
-    obj.rate = repo_rate;
+    obj.repo_rate = repo_rate;
   }
   return obj;
 }
