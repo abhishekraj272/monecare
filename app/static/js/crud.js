@@ -1,3 +1,4 @@
+import { loadPage } from "./app.js";
 /*
  * Responsible for initialising C.R.U.D functionality for the app.
  * It's important to call this after the data has been updated via AJAX.

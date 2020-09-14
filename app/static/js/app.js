@@ -4,31 +4,33 @@ let url = window.location.origin + "/api/v1/repo-rate";
 let timeArr = [];
 let rateArr = [];
 
-$.ajax({
-  type: "GET",
-  headers: {
-    "API-KEY": "qwerty",
-  },
-  contentType: "application/json",
-  url: url,
-  data: {},
-  success: function (data) {
-    data = JSON.parse(data);
+export function loadPage() {
+  $.ajax({
+    type: "GET",
+    headers: {
+      "API-KEY": "qwerty",
+    },
+    contentType: "application/json",
+    url: url,
+    data: {},
+    success: function (data) {
+      data = JSON.parse(data);
 
-    for (let i = 0; i < data.length; i++) {
-      timeArr.push(data[i].date.date);
-      rateArr.push(data[i].rate);
-    }
+      for (let i = 0; i < data.length; i++) {
+        timeArr.push(data[i].date.date);
+        rateArr.push(data[i].rate);
+      }
 
-    generateTable();
-    initCRUD();
-    generateGraph();
-  },
-  error: function (data) {
-    console.log(data);
-  },
-});
-
+      generateTable();
+      initCRUD();
+      generateGraph();
+    },
+    error: function (data) {
+      console.log(data);
+    },
+  });
+}
+loadPage();
 function generateTable() {
   for (let i = 0; i < timeArr.length; i++) {
     $(".t-body").prepend(
