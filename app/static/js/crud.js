@@ -195,19 +195,22 @@ function handle_edit_form(row_id) {
       (old_data.date === new_date && old_data.rate === new_rate) ||
       (old_data.date === new_date && !new_rate)
     ) {
-      create_alert("You must enter a new value", "alert2");
-      $("#alert2").on("closed.bs.alert", function () {
+      if (!$("#editNoDate").length) {
+        create_alert("You must enter a new value", "editNoDate");
+      }
+      $("#editNoDate").on("closed.bs.alert", function () {
         $("input[name=date]").focus();
       });
-      return;
     }
 
     //If the user has entered a new rate and no date
     //but the rate matches the old one create an alert
     //and return focus to the rate textbox
     if (old_data.rate === new_rate && !new_date) {
-      create_alert("You must enter a new value", "alert3");
-      $("#alert3").on("closed.bs.alert", function () {
+      if (!$("#editNoRate").length) {
+        create_alert("You must enter a new value", "editNoRate");
+      }
+      $("#editNoRate").on("closed.bs.alert", function () {
         $("input[name=repo_rate]").focus();
       });
       return;
