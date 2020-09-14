@@ -296,20 +296,19 @@ function get_row_data(row_id) {
   }
   return obj;
 }
-
 /**
  * Creates a bootstrap alert
  * @param {String} msg Message to display in alert
+ * @param {id} id Unique ID to give to alert element
  */
-function create_alert(msg) {
+function create_alert(msg, id) {
   let alert_html = `
-                    <div class="alert alert-warning fade show" role="alert">
+                    <div id="${id}"class="alert alert-warning fade show" role="alert">
                         ${msg}
                         <button type="button" class="close" data-dismiss="alert" aria-label="close">
                             <span aria-hidde="true">&times;</span>
                         </button>
                     </div>
     `;
-
   $(".container").prepend(alert_html);
 }
