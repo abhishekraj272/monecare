@@ -79,7 +79,20 @@ def get_repo_rate():
             "output": "Invalid input",
         }, 400
 
+    if request.method == "DELETE":
+        date = request.form.get('date')
+        repo_rate = request.form.get('repo_rate')
+
+        if date and repo_rate:
+            try:
+                record = {'date': date, 'rate': repo_rate}
+                q = db.repoRate.delete_one(record)
+                return {"output": "Success"}, 200
+            except Exception as e:
                 print(e, file=sys.stderr)
+                return {"output": "Database error"}, 400
+        return {"response": "Failed", "output": "Invalid input"}
+
 
 def check(email, regex):
 
