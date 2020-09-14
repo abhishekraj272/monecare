@@ -192,9 +192,16 @@ function handle_add_form(row_id) {
     });
   }
 }
+
+/**
+ * Will try to delete toe selected row
+ * @param {String} row_id ID of the row to delete
+ */
 function handle_delete_form(row_id) {
   let data = get_row_data(row_id);
 
+  ajax_request("delete_form", data)
+    .done(function () {
       cancel_inline_form(row_id, "delete_" + row_id);
       loadPage();
     })
@@ -258,8 +265,6 @@ function handle_edit_form(row_id) {
     }
 
     //Submit to server via ajax
-    let form = $("#edit_form");
-    let csrf_token = form.children("input[name=csrf_token]").val();
     let form_data = {
       date: $("input[name=date]").val(),
       repo_rate: $("input[name=repo_rate]").val(),
@@ -267,16 +272,8 @@ function handle_edit_form(row_id) {
       old_repo_rate: old_data.repo_rate,
     };
 
-    $.ajax({
-      type: form.attr("method"),
-      url: form.attr("action"),
-      headers: {
-        "API-KEY": "qwerty",
-        "X-CSRFToken": csrf_token,
-      },
-      data: form_data,
-    })
-      .done(function (data) {
+    ajax_request("edit_form", form_data)
+      .done(function () {
         cancel_inline_form(row_id, "edit_" + row_id);
         loadPage();
       })
@@ -475,4 +472,22 @@ function create_alert(msg, id) {
                     </div>
     `;
   $(".container").prepend(alert_html);
+}
+
+/**
+ * Handles sending AJAX requests to the server
+ */
+function ajax_request(form_id, data) {
+  let form = $("#" + form_id);
+  let csrf_token = form.children("input[name=csrf_token]").val();
+
+  return $.ajax({
+    type: form.attr("method"),
+    url: form.attr("action"),
+    headers: {
+      "API-KEY": "qwerty",
+      "X-CSRFToken": csrf_token,
+    },
+    data: data,
+  });
 }
