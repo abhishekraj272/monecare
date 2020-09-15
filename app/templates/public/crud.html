@@ -1,0 +1,18 @@
+{% macro edit_form() %}
+    <form action="/api/v1/repo-rate" method="PUT" id="edit_form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      </form>
+{% endmacro %}
+
+{% macro delete_form() %}
+    <form action="api/v1/repo-rate" method="DELETE" id="delete_form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    </form>
+{% endmacro %}
+
+
+{% macro add_form() %}
+    <form action="api/v1/repo-rate" method="POST" id="add_form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    </form>
+{% endmacro %}

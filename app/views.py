@@ -1,3 +1,4 @@
+import sys
 from app import app, db, csrf
 from flask import render_template, request
 from bson.json_util import dumps
@@ -10,12 +11,13 @@ from json import loads
 def index():
     return render_template("public/index.html")
 
+
 @app.route("/reqbin-verify.txt")
 def reqbin():
     return "", 200
 
 
-@app.route("/api/v1/repo-rate", methods=["GET", "PUT"])
+@app.route("/api/v1/repo-rate", methods=["GET", "PUT", "POST", "DELETE"])
 def get_repo_rate():
 
     api_key = request.headers.get("API-KEY")
@@ -24,43 +26,79 @@ def get_repo_rate():
         return {"output": "API KEY Invalid"}, 401
 
     if request.method == "GET":
-
         repo_rates = None
         try:
             repo_rates = db.repoRate.find()
         except Exception as e:
-            print(e)
+            print(e, file=sys.stderr)
 
         if repo_rates:
             return dumps(list(repo_rates)), 200
 
         return {"output": "Database error"}, 400
 
-    if request.method == "PUT":
-
+    if request.method == "POST":
         date = request.form.get('date')
         repo_rate = request.form.get('repo_rate')
-        print(date)
-        print(repo_rate)
 
         if date and repo_rate:
-            data = {"date": {"date": date}, "rate": repo_rate}
+            data = {"date": date, "rate": repo_rate}
 
             try:
+                if (db.repoRate.find(data).count() > 0):
+                    return {
+                        "response": "Failed",
+                        "output": "Document already exists"
+                    }, 400
                 db.repoRate.insert_one(data)
             except Exception as e:
-                print(e)
+                print(e, file=sys.stderr)
                 return {"output": "Database error"}, 400
             return {"output": "Success"}, 200
 
         return {"response": "Failed", "output": "Invalid input"}, 400
+
+    if request.method == "PUT":
+        date = request.form.get('date')
+        repo_rate = request.form.get('repo_rate')
+        old_date = request.form.get('old_date')
+        old_repo_rate = request.form.get('old_repo_rate')
+
+        if date and repo_rate:
+            try:
+                record = {'date': old_date, 'rate': old_repo_rate}
+                new_values = {"$set": {'date': date, 'rate': repo_rate}}
+                db.repoRate.update_one(record, new_values)
+                return {"output": "Success"}, 200
+            except Exception as e:
+                print(e, file=sys.stderr)
+                return {"output": "Database error"}, 400
+
+        return {
+            "response": "Failed",
+            "output": "Invalid input",
+        }, 400
+
+    if request.method == "DELETE":
+        date = request.form.get('date')
+        repo_rate = request.form.get('repo_rate')
+
+        if date and repo_rate:
+            try:
+                record = {'date': date, 'rate': repo_rate}
+                q = db.repoRate.delete_one(record)
+                return {"output": "Success"}, 200
+            except Exception as e:
+                print(e, file=sys.stderr)
+                return {"output": "Database error"}, 400
+        return {"response": "Failed", "output": "Invalid input"}
 
 
 def check(email, regex):
 
     # pass the regular expression
     # and the string in search() method
-    if(re.search(regex, email)):
+    if (re.search(regex, email)):
         return True
 
     else:
@@ -96,5 +134,3 @@ def subscribe():
         return {"output": "Success"}, 200
 
     return {"response": "Failed", "output": "Invalid email"}, 400
-
-    
